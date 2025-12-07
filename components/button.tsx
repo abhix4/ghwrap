@@ -19,6 +19,7 @@ export default function Button({
         `} >
             <motion.div className={`absolute top-0 right-0 border border-[#2222224b]  bg-[#FEFEFF] h-12 w-14 rounded-md cursor-pointer `}
             whileHover={{ translateX: 5, translateY: 5 }}
+            whileTap={{ translateX: 0, translateY: 0}}
             >
                 {
                     variant === "right" ? (
