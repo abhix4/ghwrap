@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "lucide-react": "^0.556.0",
+    "motion": "^12.23.25",
     "next": "16.0.7",
     "octokit": "^5.0.5",
     "react": "19.2.0",
