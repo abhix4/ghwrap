@@ -3,7 +3,7 @@ import {motion} from 'motion/react'
 
 export default function StarsRecieved(){
     return (
-           <div className="w-3xl h-[80%] bg-[#F2F3F2] rounded-2xl p-12 relative bg-[url('/g3.svg')] bg-no-repeat bg-bottom">
+           <div className="max-w-2xl h-[80%] bg-[#F2F3F2] rounded-2xl p-12 relative bg-[url('/g3.svg')] bg-no-repeat bg-bottom">
                    {/* <motion.div className="absolute right-40 bottom-0"
                              initial={{translateY:-500}}
                              animate={{translateY: 0}}

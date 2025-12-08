@@ -5,19 +5,17 @@ const GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql";
 
 export async function GET(req: NextRequest, { params }: { params: { username: string } }) {
   try {
-    const {username} = await params;
+       const {username} = await params;
 
     if (!username) {
-      return NextResponse.json(
-        { error: "username is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "username is required" }, { status: 400 });
     }
 
-    const y = new Date().getFullYear();
-    const from = new Date(`${y}-01-01T00:00:00Z`).toISOString();
-    const to = new Date(`${y}-12-31T23:59:59Z`).toISOString();
+    const year = new Date().getFullYear();
+    const from = new Date(`${year}-01-01T00:00:00Z`).toISOString();
+    const to = new Date(`${year}-12-31T23:59:59Z`).toISOString();
 
+    // Updated GraphQL Query
     const query = `
       query GitWrapped($login: String!, $from: DateTime!, $to: DateTime!) {
         user(login: $login) {
@@ -33,16 +31,22 @@ export async function GET(req: NextRequest, { params }: { params: { username: st
             }
           }
           repositories(
-            first: 5
-            orderBy: { field: STARGAZERS, direction: DESC }
+            first: 20
             privacy: PUBLIC
             ownerAffiliations: OWNER
+            orderBy: { field: STARGAZERS, direction: DESC }
           ) {
             nodes {
               name
               stargazerCount
-              primaryLanguage {
-                name
+              languages(first: 5, orderBy: { field: SIZE, direction: DESC }) {
+                edges {
+                  size
+                  node {
+                    name
+                    color
+                  }
+                }
               }
             }
           }
@@ -54,7 +58,7 @@ export async function GET(req: NextRequest, { params }: { params: { username: st
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer `,
+        Authorization: `Bearer ${process.env.NEXT_APP_GIT_ACCESS_TOKEN}`, // move your token to env
       },
       body: JSON.stringify({
         query,
@@ -65,24 +69,30 @@ export async function GET(req: NextRequest, { params }: { params: { username: st
     const data = await ghRes.json();
 
     if (!ghRes.ok || data.errors) {
-      console.error("GitHub error:", data.errors);
-      return NextResponse.json(
-        { error: "GitHub API error", details: data.errors },
-        { status: 502 }
-      );
+      return NextResponse.json({ error: "GitHub API error", details: data.errors }, { status: 502 });
     }
 
     const user = data.data?.user;
-    if (!user) {
-      return NextResponse.json(
-        { error: "User not found" },
-        { status: 404 }
-      );
-    }
+    if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
-    // Shape a simpler "wrapped" response
-    const contributions = user.contributionsCollection;
-    const repos = user.repositories.nodes ?? [];
+    const repos = user.repositories.nodes || [];
+
+    // Aggregate language usage
+    const languageMap: Record<string, number> = {};
+
+    repos.forEach((repo: any) => {
+      repo.languages?.edges?.forEach((edge: any) => {
+        const name = edge.node.name;
+        const size = edge.size;
+        languageMap[name] = (languageMap[name] || 0) + size;
+      });
+    });
+
+    // Convert to sortable array
+    const topLanguages = Object.entries(languageMap)
+      .map(([name, size]) => ({ name, size }))
+      .sort((a, b) => b.size - a.size)
+      .slice(0, 5); // top 5 languages
 
     const wrapped = {
       profile: {
@@ -91,25 +101,22 @@ export async function GET(req: NextRequest, { params }: { params: { username: st
         avatarUrl: user.avatarUrl,
       },
       stats: {
-        totalCommits: contributions.totalCommitContributions,
-        totalPRs: contributions.totalPullRequestContributions,
-        totalIssues: contributions.totalIssueContributions,
-        totalContributions: contributions.contributionCalendar.totalContributions,
+        totalCommits: user.contributionsCollection.totalCommitContributions,
+        totalPRs: user.contributionsCollection.totalPullRequestContributions,
+        totalIssues: user.contributionsCollection.totalIssueContributions,
+        totalContributions: user.contributionsCollection.contributionCalendar.totalContributions,
       },
-      topRepos: repos.map((r: any) => ({
-        name: r.name,
-        stars: r.stargazerCount,
-        language: r.primaryLanguage?.name ?? "Unknown",
+      topRepos: repos.slice(0, 5).map((repo: any) => ({
+        name: repo.name,
+        stars: repo.stargazerCount,
       })),
-      year: y,
+      topLanguages,
+      year,
     };
 
     return NextResponse.json({ wrapped });
   } catch (err) {
-    console.error(err);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    console.error("Error:", err);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

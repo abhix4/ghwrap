@@ -2,7 +2,15 @@ import {motion} from 'motion/react'
 import Image from 'next/image'
 
 
-export default function IntroPage(){
+type IntroPageProp = {
+    name: string;
+    image: string;
+}
+
+export default function IntroPage({
+    name,
+    image
+}: IntroPageProp){
     return (
 <div className="w-3xl h-[80%] bg-[#F2F3F2] rounded-2xl p-12 relative flex flex-col justify-between overflow-hidden shadow-xl">
             {/* <Image
@@ -14,7 +22,7 @@ export default function IntroPage(){
             /> */}
            <div>
              <h1 className="text-7xl text-[#FF694D] font-medium z-10">2025<span className="text-lg font-normal">Year in review</span></h1>
-            <h1 className="text-5xl text-[#FF694D] font-medium z-20">Abhishek Singh</h1>
+            <h1 className="text-5xl text-[#FF694D] font-medium z-20">{name}</h1>
             {/* <Image
             src='/spiral.svg'
             alt="git"
@@ -23,7 +31,7 @@ export default function IntroPage(){
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
             />  */}
             <Image
-            src='/profile.jpg'
+            src={image}
             alt="git"
             width={200}
             height={200}

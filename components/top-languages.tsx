@@ -1,7 +1,7 @@
 import {motion} from 'motion/react'
 import Image from 'next/image'
 
-export default function TopLanguages(){
+export default function TopLanguages({languages}: {languages: any[]}){
     return (
           <div className="w-3xl h-[80%] bg-[#006EE9] rounded-2xl p-12 relative bg-[url('/v3.svg')] bg-no-repeat bg-bottom">
             {/* <Image
@@ -81,11 +81,14 @@ export default function TopLanguages(){
 
 
             <div className="gap-2 flex flex-col items-center justify-start mt-18">
-                <h1 className="text-3xl text-[#D0FFA4] z-10">#1 Typescript</h1>
+                {/* <h1 className="text-3xl text-[#D0FFA4] z-10">#1 Typescript</h1>
                 <h1 className="text-3xl text-[#D0FFA4] z-10">#2 Javascript</h1>
                 <h1 className="text-3xl text-[#D0FFA4] z-10">#3 Golang</h1>
                 <h1 className="text-3xl text-[#D0FFA4] z-10">#4 Python</h1>
-                <h1 className="text-3xl text-[#D0FFA4] z-10">#5 Docker</h1>
+                <h1 className="text-3xl text-[#D0FFA4] z-10">#5 Docker</h1> */}
+                {
+                  languages.map((lang,index) => <h1 key={index} className="text-3xl text-[#D0FFA4] z-10">{lang.name}</h1>)
+                }
             </div>
             
         </div>

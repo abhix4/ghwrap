@@ -1,7 +1,8 @@
 import {motion} from 'motion/react'
 import Image from 'next/image'
 
-export default function CommitsPage(){
+
+export default function CommitsPage({totalCommits}: {totalCommits: string}){
     return (
         <div className="w-3xl h-[80%] bg-[#F2F3F2] rounded-2xl p-12 relative bg-[url('/v3.svg')] bg-no-repeat bg-bottom">
            <motion.div className="absolute right-40 bottom-0"
@@ -161,7 +162,7 @@ export default function CommitsPage(){
             <p className="text-6xl text-[#FF694D] font-medium z-10 text-center">Some call it grinding. <br />
                 You call it fun.</p>
             <p className="text-4xl text-[#FF694D] text-center font-semibold z-10 mt-16">You have Contributed </p>
-            <p className="text-5xl text-[#FF694D] font-bold  z-10 text-center mt-8"> 500 times</p>
+            <p className="text-5xl text-[#FF694D] font-bold  z-10 text-center mt-8"> {totalCommits} times</p>
             <p className="text-3xl text-[#FF694D] z-10 text-center"> in 2025</p>
             
         </div>
