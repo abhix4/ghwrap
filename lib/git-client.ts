@@ -1,5 +1,5 @@
 import { Octokit } from "octokit";
 
-export const octokit = new Octokit({ 
-  auth: process.env.NEXT_APP_GIT_ACCESS_TOKEN
+export const octokit = new Octokit({
+  auth: process.env.NEXT_APP_GIT_ACCESS_TOKEN,
 });

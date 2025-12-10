@@ -3,8 +3,7 @@ import { Geist, Geist_Mono, Josefin_Sans } from "next/font/google";
 import "./globals.css";
 
 const jesofin = Josefin_Sans({
-  variable: '--font-jesofin',
- 
+  variable: "--font-jesofin",
 });
 
 export const metadata: Metadata = {
@@ -19,11 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${jesofin.className} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={`${jesofin.className} antialiased`}>{children}</body>
     </html>
   );
 }
