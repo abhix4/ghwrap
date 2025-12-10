@@ -3,63 +3,26 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import FloatingCard from "./floating-card";
 
-export default function Streak({ longestStreak }: { longestStreak: string }) {
-  const [count, setCount] = useState(0);
+export default function Streak({ longestStreak, bestDay, bestMonth }: { longestStreak: string, bestDay: string, bestMonth: string }) {
 
-  // Countdown animation for the number
-  useEffect(() => {
-    const controls = animate(0, 56, {
-      duration: 2,
-      delay: 0.5,
-      onUpdate(value) {
-        setCount(Math.floor(value));
-      },
-    });
 
-    return controls.stop;
-  }, []);
-
-  // Split text animation helper
-  const splitText = (text) => {
-    return text.split("").map((char, index) => (
-      <motion.span
-        key={index}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.3,
-          delay: index * 0.03,
-          type: "spring",
-          stiffness: 100,
-        }}
-        style={{ display: "inline-block" }}
-      >
-        {char === " " ? "\u00A0" : char}
-      </motion.span>
-    ));
-  };
 
   return (
-    <div className="relative flex min-h-[80vh] w-full max-w-3xl flex-col items-center justify-center rounded-2xl bg-[#F2F3F2] p-12">
-      <h1 className="z-10 mb-4 text-center text-7xl text-[#FF694D]">
-        {splitText("Longest Streak")}
+    <div className="relative flex h-[80%] max-w-3xl md:min-w-3xl flex-col items-center justify-start rounded-2xl bg-[#F2F3F2] p-6 md:p-12">
+      <h1 className="z-10 mb-6 md:mb-16 text-center text-5xl md:text-7xl text-[#FF694D]">
+       Longest Streak
       </h1>
 
-      <motion.p
-        className="z-10 mb-8 text-center text-8xl font-medium text-[#FF694D]"
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.8, type: "spring", stiffness: 100 }}
+      <p
+        className="z-10 mb-4 md:mb-8 text-center text-5xl md:text-8xl font-medium text-[#FF694D]"
       >
         {longestStreak} <br />
-        <span className="text-6xl">Days</span>
-      </motion.p>
+        <span className="text-5xl md:text-6xl">Days</span>
+      </p>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 1.5, type: "spring" }}
-        className="mb-8"
+      <div
+        
+        className="mb-4 md:mb-8"
       >
         <Image
           src="/fire.gif"
@@ -69,52 +32,26 @@ export default function Streak({ longestStreak }: { longestStreak: string }) {
           className="mx-auto mt-12"
           draggable={false}
         />
-      </motion.div>
+      </div>
 
-      <div className="z-10 space-y-2 text-center text-4xl text-[#FF694D]">
+      <div className="z-10 space-y-2 text-center text-2xl md:text-4xl text-[#FF694D]">
         <p>
-          {splitText("You didn't just push code.").map((char, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.3,
-                delay: 2 + i * 0.02,
-              }}
-              style={{ display: "inline-block" }}
-            >
-              {char}
-            </motion.span>
-          ))}
+          You didn't just push code.
         </p>
         <p>
-          {splitText("You pushed yourself.").map((char, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.3,
-                delay: 2.5 + i * 0.02,
-              }}
-              style={{ display: "inline-block" }}
-            >
-              {char}
-            </motion.span>
-          ))}
+         You pushed yourself.
         </p>
       </div>
 
       <FloatingCard
-        className="absolute -right-20 bottom-80 rotate-12 bg-[#F2F3F2]"
-        title="busiest day"
-        data="Tuesday"
+        className="absolute -right-20 bottom-80 rotate-12 bg-[#F2F3F2] hidden md:block"
+        title="Grind day"
+        data={bestDay}
       />
       <FloatingCard
-        className="absolute bottom-40 -left-20 -rotate-12 bg-[#F2F3F2]"
-        title="busiest month"
-        data="July"
+        className="absolute bottom-40 -left-20 -rotate-12 bg-[#F2F3F2] hidden md:block"
+        title="Best month"
+        data={bestMonth}
       />
     </div>
   );

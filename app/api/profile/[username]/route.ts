@@ -191,7 +191,7 @@ export async function GET(req: NextRequest, { params }: { params: { username: st
         const [, monthStr] = monthKey.split("-");
         const monthIndex = Number(monthStr) - 1;
         mostEfficientMonth = {
-          month: `${monthNames[monthIndex]} ${year}`,
+          month: `${monthNames[monthIndex]}`,
           totalContributions: value.totalContributions,
         };
       }
