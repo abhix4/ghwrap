@@ -3,9 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 const GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql";
 
-export async function GET(req: NextRequest, { params }: { params: Promise<{ username: string }> }) {
-  try {
-    const { username } = await params;
+export async function GET(
+  req: NextRequest,
+  context: { params: Promise<{ username: string }> }
+) {
+  try{
+    const { username } = await context.params;
 
     if (!username) {
       return NextResponse.json({ error: "username is required" }, { status: 400 });
