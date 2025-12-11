@@ -9,9 +9,8 @@ export default function Home() {
   const router = useRouter();
   const [userName, setUserName] = useState<string>("");
   return (
-    <div className="flex h-screen w-full items-start pt-12 md:pt-0 justify-center bg-[#222222] md:items-center">
-      <div className="relative flex h-[80%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-3xl bg-[#F2F3F2] md:h-[90%] md:w-[80%] bg-[url('/bg12.svg')] bg-no-repeat bg-cover bg-top">
-        
+    <div className="flex h-screen w-full items-start justify-center bg-[#222222] pt-12 md:items-center md:pt-0">
+      <div className="relative flex h-[80%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-3xl bg-[#F2F3F2] bg-[url('/bg12.svg')] bg-cover bg-top bg-no-repeat md:h-[90%] md:w-[80%]">
         <div className="z-20 flex" draggable={false}>
           {/* <Image src="/g1.svg" alt="git" width={140} height={140} draggable={false} />
           <Image src="/g2.svg" alt="git" width={140} height={140} draggable={false} />

@@ -8,6 +8,7 @@ export default function ShareCard({
   topLanguage,
   longestStreak,
   avatarUrl,
+  averageCommitsPerDay
 }: {
   name: string;
   username: string;
@@ -16,6 +17,7 @@ export default function ShareCard({
   topLanguage: string;
   longestStreak: string;
   avatarUrl: string;
+  averageCommitsPerDay: string;
 }) {
   return (
     <div className="relative max-h-[560px] max-w-[450px] rounded-2xl bg-[#F2F3F2] p-6 md:h-[610px] md:p-10">
@@ -68,7 +70,7 @@ export default function ShareCard({
       /> */}
       <p className="absolute top-6 right-6 z-10 text-right text-lg leading-5 text-[#FF694D] md:top-10 md:right-10">
         {" "}
-        Average commits <br /> per day <br /> 0.2
+        Average commits <br /> per day <br />{averageCommitsPerDay}
       </p>
     </div>
   );

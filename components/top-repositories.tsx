@@ -12,15 +12,15 @@ export default function TopRepositories({
   activeDays: string;
 }) {
   return (
-    <div className="relative min-h-[650px] max-w-[700px] rounded-2xl bg-[#F2F3F2] p-6 md:min-w-[700px] md:p-12 bg-[url('/bg4.svg')] bg-contain bg-bottom bg-no-repeat">
-      <h1 className="z-10 text-center text-5xl tracking-tight font-medium text-[#FF694D] md:text-7xl">
+    <div className="relative min-h-[500px] max-w-[700px] rounded-2xl bg-[#F2F3F2] bg-[url('/bg4.svg')] bg-contain bg-bottom bg-no-repeat p-6 md:min-h-[650px] md:min-w-[700px] md:p-12">
+      <h1 className="z-10 text-center text-5xl font-medium tracking-tight text-[#FF694D] md:text-7xl">
         Top Repositories
       </h1>
-      <h1 className="z-10 text-center tracking-tight text-xl text-[#FF694D] md:text-2xl">
+      <h1 className="z-10 text-center text-xl tracking-tight text-[#FF694D] md:text-2xl">
         Your Favorite Battlefields
       </h1>
 
-      <div className="mt-8 flex flex-col tracking-tight items-center gap-2 md:mt-18">
+      <div className="mt-8 flex flex-col items-center gap-2 tracking-tight md:mt-18">
         {repositories.map((repo, index) => (
           <h1 key={index} className="z-10 text-2xl text-[#FF694D] md:text-3xl">
             {repo.name}
@@ -28,7 +28,7 @@ export default function TopRepositories({
         ))}
       </div>
       <Image src="/512.gif" alt="img" width={100} height={100} className="mx-auto mt-12" />
-     
+
       <FloatingCard
         className="absolute -right-20 bottom-40 hidden rotate-12 bg-[#F2F3F2] md:block"
         title="Active days"

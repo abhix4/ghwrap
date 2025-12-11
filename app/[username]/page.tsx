@@ -20,7 +20,7 @@ type UserPageProps = {
 
 export default function UserPage() {
   const [index, setIndex] = useState<number>(0);
-  const focusRef = useRef<HTMLDivElement>(null)
+  const focusRef = useRef<HTMLDivElement>(null);
 
   const [userData, setUserData] = useState<any>();
   const params = useParams<{ username: string }>();
@@ -56,6 +56,7 @@ export default function UserPage() {
       totalPrs={userData?.wrapped.stats.totalPRs}
       topLanguage={userData?.wrapped?.topLanguages[0].name}
       longestStreak={userData?.wrapped.stats.longestStreak}
+      averageCommitsPerDay={userData?.wrapped.stats.averageCommitsPerDay}
     />,
   ];
 
@@ -71,13 +72,13 @@ export default function UserPage() {
 
   useEffect(() => {
     fetchData();
-    focusRef?.current?.focus()
+    focusRef?.current?.focus();
   }, [username]);
 
   if (!userData)
     return (
       <div className="flex h-screen w-full items-center justify-center overflow-hidden bg-[#222222] px-40">
-        <h1 className=" text-2xl md:text-4xl text-[#F2F3F2]">Loading...</h1>
+        <h1 className="text-2xl text-[#F2F3F2] md:text-4xl">Loading...</h1>
       </div>
     );
   return (
@@ -87,15 +88,16 @@ export default function UserPage() {
         tabIndex={0}
         ref={focusRef}
         onKeyDown={(e) => {
-          if ((e.key === "Enter" && index < 6 ) || (e.key === "ArrowRight" && index < 6)) setIndex((prev) => prev + 1);
+          if ((e.key === "Enter" && index < 6) || (e.key === "ArrowRight" && index < 6))
+            setIndex((prev) => prev + 1);
           else if (e.key === "ArrowLeft" && index > 0) setIndex((prev) => prev - 1);
         }}
       >
         {
           <Button
-        variant="left"
-        handleClick={() => setIndex((prev) => prev - 1)}
-        disable={index === 0}
+            variant="left"
+            handleClick={() => setIndex((prev) => prev - 1)}
+            disable={index === 0}
           />
         }
 
@@ -103,9 +105,9 @@ export default function UserPage() {
 
         {
           <Button
-        variant="right"
-        handleClick={() => setIndex((prev) => prev + 1)}
-        disable={index === 6}
+            variant="right"
+            handleClick={() => setIndex((prev) => prev + 1)}
+            disable={index === 6}
           />
         }
       </div>
@@ -115,7 +117,8 @@ export default function UserPage() {
         tabIndex={0}
         ref={focusRef}
         onKeyDown={(e) => {
-          if ((e.key === "Enter" && index < 6 ) || (e.key === "ArrowRight" && index < 6)) setIndex((prev) => prev + 1);
+          if ((e.key === "Enter" && index < 6) || (e.key === "ArrowRight" && index < 6))
+            setIndex((prev) => prev + 1);
           else if (e.key === "ArrowLeft" && index > 0) setIndex((prev) => prev - 1);
         }}
       >
@@ -123,19 +126,19 @@ export default function UserPage() {
 
         <div className="mx-auto mt-4 flex w-fit gap-4">
           {
-        <Button
-          variant="left"
-          handleClick={() => setIndex((prev) => prev - 1)}
-          disable={index === 0}
-        />
+            <Button
+              variant="left"
+              handleClick={() => setIndex((prev) => prev - 1)}
+              disable={index === 0}
+            />
           }
 
           {
-        <Button
-          variant="right"
-          handleClick={() => setIndex((prev) => prev + 1)}
-          disable={index === 6}
-        />
+            <Button
+              variant="right"
+              handleClick={() => setIndex((prev) => prev + 1)}
+              disable={index === 6}
+            />
           }
         </div>
       </div>
