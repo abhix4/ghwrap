@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Josefin_Sans } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const jesofin = Josefin_Sans({
   variable: "--font-jesofin",
@@ -18,7 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jesofin.className} antialiased`}>{children}</body>
+      <body className={`${jesofin.className} antialiased`}>{children}
+      <Analytics/>
+
+      </body>
     </html>
   );
 }
