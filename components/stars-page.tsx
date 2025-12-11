@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 
 export default function StarsRecieved({ stars }: { stars: string }) {
   return (
-    <div className="relative flex h-[80%] max-w-3xl md:min-w-3xl flex-col items-center rounded-2xl bg-[#564DF8] p-6 md:p-12">
+    <div className="relative flex min-h-[650px] max-w-[700px] flex-col items-center rounded-2xl bg-[#648493] p-6 md:min-w-[700px] md:p-12 md:bg-[url('/bg10.svg')] bg-contain bg-bottom bg-no-repeat">
       {/* <motion.div className="absolute right-40 bottom-0"
                              initial={{translateY:-500}}
                              animate={{translateY: 0}}
@@ -143,13 +143,17 @@ export default function StarsRecieved({ stars }: { stars: string }) {
                              </motion.div>
                    */}
 
-      <h1 className="z-10 text-center text-5xl md:text-7xl text-[#FFFFFF]">Stars Recieved</h1>
-      <h1 className="z-10 mt-12 text-center text-5xl md:text-7xl font-medium text-[#BFF840]">{stars}</h1>
-     
-      <p className="z-10 mt-8 md:mt-22 text-center text-2xl md:text-4xl text-[#FFFFFF]">
+      <h1 className="z-10 text-center mt-22 text-5xl text-[#F4F5C8] md:text-7xl tracking-tight">Stars Recieved</h1>
+      <h1 className="z-10 mt-12 text-center text-5xl font-medium text-[#F4F5C8] md:text-8xl leading-8 tracking-tight">
+        {stars}
+      </h1>
+
+      <p className="z-10 mt-8 text-center text-2xl text-[#F4F5C8] md:mt-16 md:text-4xl tracking-tight">
         That’s {stars} developers saying:
       </p>
-      <p className="z-10 text-center text-2xl md:text-4xl text-[#FFFFFF]">“This helped me build.”</p>
+      <p className="z-10 text-center text-2xl text-[#F4F5C8] md:text-4xl tracking-tight">
+        “This helped me build.”
+      </p>
     </div>
   );
 }

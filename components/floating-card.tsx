@@ -9,8 +9,8 @@ export default function FloatingCard({
 }) {
   return (
     <div className={`${className} rounded-2xl border-2 border-[#FF694D] p-6`}>
-      <h1 className="text-center text-4xl text-[#FF694D] tracking-tighter">{title}</h1>
-      <div className="text-center text-5xl text-[#FF694D]">{data}</div>
+      <h1 className="text-center text-4xl tracking-tighter text-[#FF694D]">{title}</h1>
+      <div className="text-center text-5xl tracking-tight text-[#FF694D]">{data}</div>
     </div>
   );
 }

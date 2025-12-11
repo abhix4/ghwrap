@@ -31,9 +31,21 @@ export default function UserPage() {
       avgCommits={userData?.wrapped.stats.averageCommitsPerDay}
     />,
     <CommitsPage totalCommits={userData?.wrapped.stats.totalContributions} />,
-    <TopLanguages languages={userData?.wrapped?.topLanguages} totalIssues={userData?.wrapped.stats.totalIssues} totalCommits={userData?.wrapped.stats.totalCommits} />,
-    <TopRepositories repositories={userData?.wrapped?.topRepos} totalPrs={userData?.wrapped.stats.totalPRs} activeDays={userData?.wrapped.stats.totalActiveDays}/>,
-    <Streak longestStreak={userData?.wrapped.stats.longestStreak} bestMonth={userData?.wrapped.stats.mostEfficientMonth.month} bestDay={userData?.wrapped.stats.busiestDayOfWeek.day} />,
+    <TopLanguages
+      languages={userData?.wrapped?.topLanguages}
+      totalIssues={userData?.wrapped.stats.totalIssues}
+      totalCommits={userData?.wrapped.stats.totalCommits}
+    />,
+    <TopRepositories
+      repositories={userData?.wrapped?.topRepos}
+      totalPrs={userData?.wrapped.stats.totalPRs}
+      activeDays={userData?.wrapped.stats.totalActiveDays}
+    />,
+    <Streak
+      longestStreak={userData?.wrapped.stats.longestStreak}
+      bestMonth={userData?.wrapped.stats.mostEfficientMonth.month}
+      bestDay={userData?.wrapped.stats.busiestDayOfWeek.day}
+    />,
     <StarsRecieved stars={userData?.wrapped.stats.totalStars} />,
     <ShareCard
       avatarUrl={userData?.wrapped.profile.avatarUrl}
@@ -83,10 +95,9 @@ export default function UserPage() {
             disable={index === 0}
           />
         }
-       
-            {tabs[index]}
-     
-      
+
+        {tabs[index]}
+
         {
           <Button
             variant="right"
@@ -97,17 +108,16 @@ export default function UserPage() {
       </div>
 
       <div
-        className="h-screen w-full  overflow-hidden bg-[#222222] p-4  md:hidden"
+        className="h-screen w-full overflow-hidden bg-[#222222] p-4 md:hidden"
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === "ArrowRight") setIndex((prev) => prev + 1);
           else if (e.key === "ArrowLeft") setIndex((prev) => prev - 1);
         }}
       >
-       
-          {tabs[index]}
-        
-        <div className="flex gap-4 mt-4 w-fit mx-auto">
+        {tabs[index]}
+
+        <div className="mx-auto mt-4 flex w-fit gap-4">
           {
             <Button
               variant="left"

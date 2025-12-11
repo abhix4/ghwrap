@@ -18,16 +18,22 @@ export default function ShareCard({
   avatarUrl: string;
 }) {
   return (
-    <div className="relative max-h-[610px] md:h-[610px] max-w-[450px] rounded-2xl bg-[#F2F3F2] p-6 md:p-10">
+    <div className="relative max-h-[560px] max-w-[450px] rounded-2xl bg-[#F2F3F2] p-6 md:h-[610px] md:p-10">
       {/* <Share size={28} className="absolute  text-[#FF694D] cursor-pointer font-light top-10 right-10"/> */}
-      <div className="relative min-h-28  w-fit min-w-28">
-           <div className="min-w-28 min-h-28 bg-[#FF694D] rounded-lg absolute -right-1 -bottom-1 z-0"></div>
-            <div className="relative min-h-28  w-fit min-w-28 overflow-hidden rounded-lg border border-[#1A1A1A] z-10">
-              <Image src={avatarUrl} alt="git" width={112} height={112} className="" draggable={false}/>
-            </div>
-
+      <div className="relative min-h-28 w-fit min-w-28">
+        <div className="absolute -right-1 -bottom-1 z-0 min-h-28 min-w-28 rounded-lg bg-[#FF694D]"></div>
+        <div className="relative z-10 min-h-28 w-fit min-w-28 overflow-hidden rounded-lg border border-[#1A1A1A]">
+          <Image
+            src={avatarUrl}
+            alt="git"
+            width={112}
+            height={112}
+            className=""
+            draggable={false}
+          />
+        </div>
       </div>
-     
+
       <h1 className="z-10 mt-8 text-4xl font-bold text-[#FF694D]">{name}</h1>
       {/* <h1 className="text-7xl text-[#FF694D] font-bold z-10">200</h1> */}
 
@@ -51,8 +57,8 @@ export default function ShareCard({
       </div>
 
       <h2 className="z-10 mt-24 text-2xl font-medium text-[#FF694D]"> #{username}</h2>
-      <p className="z-10 text-md leading-4 text-[#FF694D]">2025</p>
-      <p className="z-10 text-md  leading-4 text-[#FF694D]">ghwrap.com</p>
+      <p className="text-md z-10 leading-4 text-[#FF694D]">2025</p>
+      <p className="text-md z-10 leading-4 text-[#FF694D]">ghwrap.com</p>
       {/* <Image
         src="warrior.svg"
         alt="git"
@@ -60,7 +66,7 @@ export default function ShareCard({
         height={400}
         className="absolute right-0 bottom-0"
       /> */}
-      <p className="absolute top-6 right-6 md:top-10 md:right-10 z-10 text-right text-lg leading-5 text-[#FF694D]">
+      <p className="absolute top-6 right-6 z-10 text-right text-lg leading-5 text-[#FF694D] md:top-10 md:right-10">
         {" "}
         Average commits <br /> per day <br /> 0.2
       </p>

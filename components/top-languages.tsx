@@ -2,45 +2,56 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import FloatingCard from "./floating-card";
 
-export default function TopLanguages({ languages, totalIssues, totalCommits }: { languages: any[]; totalIssues: number; totalCommits: number }) {
+export default function TopLanguages({
+  languages,
+  totalIssues,
+  totalCommits,
+}: {
+  languages: any[];
+  totalIssues: number;
+  totalCommits: number;
+}) {
   return (
-    <div className="relative h-[80%] max-w-3xl md:min-w-3xl rounded-2xl bg-[#006EE9] p-6 md:p-12">
-      {/* <Image
-            src='/Vector.svg'
-            alt="git"
-            width={300}
-            height={500}
-            className="absolute right-0 bottom-0"
-            /> */}
-      <h1 className="z-10 text-center text-5xl md:text-7xl font-medium text-[#D0FFA4]">Top Languages</h1>
-      <p className="z-10 text-center text-xl md:text-2xl text-[#D0FFA4]">that you whispered to daily</p>
+    <div className="flex justify-center">
+      <div className="relative min-h-[650px] max-w-[700px] rounded-2xl bg-[#006EE9] p-6 md:min-w-[700px] md:p-12 overflow-hidden">
+      <Image
+        src='/lang.svg'
+        alt="git"
+        width={350}
+        height={350}
+        className="absolute top-1/2 -translate-y-1/2 -left-43  opacity-30 "
+      />
+       <Image
+        src='/lang.svg'
+        alt="git"
+        width={350}
+        height={350}
+        className="absolute top-1/2 -translate-y-1/2 -right-43 opacity-20 md:opacity-90 "
+      />
 
-      {/* <FloatingCard className='absolute -bottom-10 left-30 -rotate-2 bg-[#F2F3F2]' title='total commits' data='35'/>
-
-            <FloatingCard className='absolute bottom-40 -right-20 rotate-12 bg-[#F2F3F2]' title='total prs' data='35'/>
-            <FloatingCard className='absolute bottom-80 -left-20 -rotate-12 bg-[#F2F3F2]' title='total issues' data='35'/> */}
+      <h1 className="z-10 text-center text-5xl tracking-tighter font-medium text-[#D0FFA4] md:text-7xl">
+        Top Languages
+      </h1>
+      <p className="z-10 text-center text-xl tracking-tight text-[#D0FFA4] md:text-2xl">
+        that you whispered to daily
+      </p>
 
       <div className="mt-18 flex flex-col items-center justify-start gap-2">
-        {/* <h1 className="text-3xl text-[#D0FFA4] z-10">#1 Typescript</h1>
-                <h1 className="text-3xl text-[#D0FFA4] z-10">#2 Javascript</h1>
-                <h1 className="text-3xl text-[#D0FFA4] z-10">#3 Golang</h1>
-                <h1 className="text-3xl text-[#D0FFA4] z-10">#4 Python</h1>
-                <h1 className="text-3xl text-[#D0FFA4] z-10">#5 Docker</h1> */}
         {languages.map((lang, index) => (
-          <h1 key={index} className="z-10 text-2xl md:text-3xl text-[#D0FFA4]">
-            {lang.name}
-          </h1>
+        <h1 key={index} className="tracking-tight z-10 text-2xl text-[#D0FFA4] md:text-3xl">
+          {lang.name}
+        </h1>
         ))}
       </div>
 
-      <p className="absolute right-6 bottom-6 md:right-12 md:bottom-12 z-10 text-center text-md text-[#D0FFA4]">
-        {" "}
-       {totalIssues} Issues ?
+      <p className="text-md absolute right-6 bottom-6 z-10 text-center text-[#D0FFA4] md:right-12 md:bottom-12">
+        {totalIssues} Issues ?
       </p>
 
-      <p className="absolute bottom-6 left-6 md:bottom-12 md:left-12 z-10 text-center text-md text-[#D0FFA4]">
+      <p className="text-md absolute bottom-6 left-6 z-10 text-center text-[#D0FFA4] md:bottom-12 md:left-12">
         {totalCommits} Commits, No Regrets
       </p>
+      </div>
     </div>
   );
 }

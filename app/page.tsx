@@ -9,8 +9,8 @@ export default function Home() {
   const router = useRouter();
   const [userName, setUserName] = useState<string>("");
   return (
-    <div className="flex h-screen w-full items-start md:items-center justify-center bg-[#222222]">
-      <div className="relative flex h-[80%] md:h-[90%] w-[90%] md:w-[80%] flex-col items-center justify-center overflow-hidden rounded-3xl bg-[#F2F3F2]">
+    <div className="flex h-screen w-full items-start justify-center bg-[#222222] md:items-center">
+      <div className="relative flex h-[80%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-3xl bg-[#F2F3F2] md:h-[90%] md:w-[80%]">
         <div className="absolute top-0 -left-28 h-64 w-64 rounded-full bg-[#FEFEFF]"></div>
         <div className="absolute top-20 right-28 h-64 w-64 rounded-full bg-[#FEFEFF]"></div>
         <div className="absolute bottom-0 left-28 h-64 w-64 rounded-full bg-[#FEFEFF]"></div>
@@ -24,18 +24,20 @@ export default function Home() {
 
           <Image src="/g8.svg" alt="git" width={140} height={140} draggable={false} /> */}
         </div>
-        <h1 className="z-10 mt-8 text-xl md:text-2xl text-[#FF694D]"><span className="text-lg md:text-xl">In, </span>2025</h1>
-        <h1 className="z-10 text-3xl md:text-7xl font-bold text-[#FF694D]">You committed. A lot</h1>
+        <h1 className="z-10 mt-8 text-xl text-[#FF694D] md:text-2xl">
+          <span className="text-lg md:text-xl">In, </span>2025
+        </h1>
+        <h1 className="z-10 text-3xl font-bold text-[#FF694D] md:text-7xl">You committed. A lot</h1>
 
-        <h2 className="z-10 mt-6 md:mt-12 text-center text-xl md:text-3xl text-[#FF694D]">
+        <h2 className="z-10 mt-6 text-center text-xl text-[#FF694D] md:mt-12 md:text-3xl">
           Your development journey,<br></br>deserves recognition.
         </h2>
 
-        <div className="z-10 flex flex-col md:flex-row items-center md:items-end gap-2">
+        <div className="z-10 flex flex-col items-center gap-2 md:flex-row md:items-end">
           <input
             type="text"
             placeholder="Username"
-            className="mt-18 md:w-42 border rounded-md bg-[#FEFEFF] border-[#2222224b] shadow-sm p-[9px] text-md md:text-xl underline-offset-4 placeholder-[#D9D9D9] outline-none focus:border-b-2"
+            className="text-md mt-18 rounded-md border border-[#2222224b] bg-[#FEFEFF] p-[9px] underline-offset-4 placeholder-[#D9D9D9] shadow-sm outline-none focus:border-b-2 md:w-42 md:text-xl"
             onChange={(e) => setUserName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && router.push(`/${userName}`)}
           />
