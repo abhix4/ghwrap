@@ -9,11 +9,9 @@ export default function Home() {
   const router = useRouter();
   const [userName, setUserName] = useState<string>("");
   return (
-    <div className="flex h-screen w-full items-start justify-center bg-[#222222] md:items-center">
-      <div className="relative flex h-[80%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-3xl bg-[#F2F3F2] md:h-[90%] md:w-[80%]">
-        <div className="absolute top-0 -left-28 h-64 w-64 rounded-full bg-[#FEFEFF]"></div>
-        <div className="absolute top-20 right-28 h-64 w-64 rounded-full bg-[#FEFEFF]"></div>
-        <div className="absolute bottom-0 left-28 h-64 w-64 rounded-full bg-[#FEFEFF]"></div>
+    <div className="flex h-screen w-full items-start pt-12 md:pt-0 justify-center bg-[#222222] md:items-center">
+      <div className="relative flex h-[80%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-3xl bg-[#F2F3F2] md:h-[90%] md:w-[80%] bg-[url('/bg12.svg')] bg-no-repeat bg-cover bg-top">
+        
         <div className="z-20 flex" draggable={false}>
           {/* <Image src="/g1.svg" alt="git" width={140} height={140} draggable={false} />
           <Image src="/g2.svg" alt="git" width={140} height={140} draggable={false} />
