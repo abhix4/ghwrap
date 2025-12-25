@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import Image from "next/image";
 import FloatingCard from "./floating-card";
 import { TextEffect } from "./motion-primitives/text-effect";
@@ -12,7 +12,7 @@ export default function TopRepositories({
   totalPrs: string;
   activeDays: string;
 }) {
-  const container = {
+  const container: Variants = {
     hidden: {},
     visible: {
       transition: {
@@ -22,8 +22,11 @@ export default function TopRepositories({
     },
   };
 
-  const item = {
-    hidden: { y: 24, opacity: 0 },
+  const item: Variants = {
+    hidden: {
+      y: 24,
+      opacity: 0,
+    },
     visible: {
       y: 0,
       opacity: 1,

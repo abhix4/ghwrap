@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate, Variants } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import FloatingCard from "./floating-card";
@@ -13,8 +13,11 @@ export default function Streak({
   bestDay: string;
   bestMonth: string;
 }) {
-  const fadeUp = {
-    hidden: { y: 30, opacity: 0 },
+  const fadeUp: Variants = {
+    hidden: {
+      y: 30,
+      opacity: 0,
+    },
     visible: {
       y: 0,
       opacity: 1,
@@ -83,7 +86,7 @@ export default function Streak({
         className="absolute -right-20 bottom-80 hidden rotate-12 md:block"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 1200, damping: 40, duration: 0.3, delay: 1.2 }}
+        transition={{ type: "spring", stiffness: 1200, damping: 40, duration: 0.3, delay: 0.6 }}
       >
         <FloatingCard className="bg-[#F2F3F2] md:block" title="Grind day" data={bestDay} />
       </motion.div>
@@ -92,7 +95,7 @@ export default function Streak({
         className="absolute bottom-40 -left-20 hidden -rotate-12 md:block"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 1200, damping: 40, duration: 0.3, delay: 1.7 }}
+        transition={{ type: "spring", stiffness: 1200, damping: 40, duration: 0.3, delay: 1 }}
       >
         <FloatingCard className="bg-[#F2F3F2] md:block" title="Best month" data={bestMonth} />
       </motion.div>

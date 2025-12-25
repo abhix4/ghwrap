@@ -1,10 +1,10 @@
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 import Image from "next/image";
 import FloatingCard from "./floating-card";
 import { TextEffect } from "./motion-primitives/text-effect";
 
 export default function CommitsPage({ totalCommits }: { totalCommits: string }) {
-  const fadeUp = {
+  const fadeUp: Variants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
@@ -19,108 +19,6 @@ export default function CommitsPage({ totalCommits }: { totalCommits: string }) 
   };
   return (
     <div className="relative min-h-[500px] max-w-[700px] rounded-2xl bg-[#F2F3F2] bg-[url('/commit-union.svg')] bg-contain bg-bottom bg-no-repeat p-6 md:min-h-[650px] md:min-w-[700px] md:p-12">
-      {/* <motion.div
-        className="hidden md:absolute right-40 bottom-0 "
-        initial={{ translateY: -500 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 1.8 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div>
-
-      <motion.div
-        className="hidden md:block absolute bottom-0 left-40"
-        initial={{ translateY: -500 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 2.0 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div>
-
-      <motion.div
-        className="hidden md:block absolute bottom-0 left-60"
-        initial={{ translateY: -600 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 1.2 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div>
-
-      <motion.div
-        className=" hidden md:block absolute bottom-0 left-80"
-        initial={{ translateY: -500 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 1.4 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div> */}
-      {/* here it is */}
-      {/* <motion.div
-        className="hidden md:block absolute bottom-30 left-0"
-        initial={{ translateY: -600 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 4 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div>
-
-      <motion.div
-        className="hidden md:block absolute bottom-0 left-0"
-        initial={{ translateY: -500 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 2.6 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div>
-
-      <motion.div
-        className="absolute right-0 bottom-0"
-        initial={{ translateY: -700 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 1.8 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div>
-
-      <motion.div
-        className="absolute right-60 bottom-0"
-        initial={{ translateY: -800 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 2.0 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div>
-
-      <motion.div
-        className="absolute right-40 bottom-0"
-        initial={{ translateY: -500 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 2.2 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div>
-
-      <motion.div
-        className="hidden md:block absolute bottom-0 left-20"
-        initial={{ translateY: -600 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 2.4 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div>
-
-      <motion.div
-        className="absolute right-20 bottom-0"
-        initial={{ translateY: -600 }}
-        animate={{ translateY: 0 }}
-        transition={{ type: "spring", duration: 2.8 }}
-      >
-        <Image src="/g2.svg" alt="git" width={150} height={150} />
-      </motion.div> */}
-
-      {/* <h1 className="text-7xl text-[#FF694D] font-bold z-10">Total Contributions</h1>
-            <h1 className="text-7xl text-[#FF694D] font-bold z-10">500</h1> */}
-
       <TextEffect
         per="word"
         as="h3"
