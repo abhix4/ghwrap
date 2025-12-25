@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import FloatingCard from "./floating-card";
+import { TextEffect } from "./motion-primitives/text-effect";
 
 export default function TopLanguages({
   languages,
@@ -11,38 +12,121 @@ export default function TopLanguages({
   totalIssues: number;
   totalCommits: number;
 }) {
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 24, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 140,
+        damping: 20,
+      },
+    },
+  };
+
+  const rotatingImage = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
   return (
     <div className="flex justify-center">
       <div className="relative min-h-[500px] max-w-[700px] overflow-hidden rounded-2xl bg-[#006EE9] p-6 md:min-h-[650px] md:min-w-[700px] md:p-12">
-        <Image
-          src="/lang.svg"
-          alt="git"
-          width={350}
-          height={350}
-          className="absolute top-1/2 -left-43 -translate-y-1/2 opacity-30"
-        />
-        <Image
-          src="/lang.svg"
-          alt="git"
-          width={350}
-          height={350}
-          className="absolute top-1/2 -right-43 -translate-y-1/2 opacity-20 md:opacity-90"
-        />
+        <motion.div
+          className="absolute top-1/2 -left-43 -translate-y-1/2"
+          variants={rotatingImage}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{
+              repeat: Infinity,
+              duration: 60, // slow = premium
+              ease: "linear",
+            }}
+          >
+            <Image src="/lang.svg" alt="git" width={350} height={350} className="opacity-30" />
+          </motion.div>
+        </motion.div>
 
-        <h1 className="z-10 text-center text-5xl font-medium tracking-tighter text-[#D0FFA4] md:text-7xl">
+        <motion.div
+          className="absolute top-1/2 -right-43 -translate-y-1/2"
+          variants={rotatingImage}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.15 }}
+        >
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{
+              repeat: Infinity,
+              duration: 80, // slightly different speed
+              ease: "linear",
+            }}
+          >
+            <Image
+              src="/lang.svg"
+              alt="git"
+              width={350}
+              height={350}
+              className="opacity-20 md:opacity-90"
+            />
+          </motion.div>
+        </motion.div>
+
+        <TextEffect
+          per="word"
+          as="p"
+          preset="slide"
+          className="z-10 text-center text-5xl font-medium tracking-tighter text-[#D0FFA4] md:text-7xl"
+        >
           Top Languages
-        </h1>
-        <p className="z-10 text-center text-xl tracking-tight text-[#D0FFA4] md:text-2xl">
-          that you whispered to daily
-        </p>
+        </TextEffect>
 
-        <div className="mt-18 flex flex-col items-center justify-start gap-2">
+        <TextEffect
+          per="word"
+          as="p"
+          preset="slide"
+          className="z-10 text-center text-xl tracking-tight text-[#D0FFA4] md:text-2xl"
+          delay={0.3}
+        >
+          that you whispered to daily
+        </TextEffect>
+
+        <motion.div
+          className="mt-18 flex flex-col items-center justify-start gap-2"
+          variants={container}
+          initial="hidden"
+          animate="visible"
+        >
           {languages.map((lang, index) => (
-            <h1 key={index} className="z-10 text-2xl tracking-tight text-[#D0FFA4] md:text-3xl">
+            <motion.h1
+              key={index}
+              className="z-10 text-2xl tracking-tight text-[#D0FFA4] md:text-3xl"
+              variants={item}
+            >
               {lang.name}
-            </h1>
+            </motion.h1>
           ))}
-        </div>
+        </motion.div>
 
         <p className="text-md absolute right-6 bottom-6 z-10 text-center text-[#D0FFA4] md:right-12 md:bottom-12">
           {totalIssues} Issues ?

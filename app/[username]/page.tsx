@@ -78,47 +78,47 @@ export default function UserPage() {
   if (!userData)
     return (
       <div className="flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#222222] px-40">
-      <div>
-        <motion.h1
-          className="text-2xl text-[#CECFCE] md:text-4xl text-start"
-          initial={{ opacity: 0, translateY: -20 }}
-          animate={{ opacity: 1, translateY: 0 }}
-          exit={{ opacity: 0, translateY: -20 }}
-          transition={{ duration: 0.2, damping: 30, stiffness: 500, type: 'spring' }}
-        >
-          Loading...
-        </motion.h1>
+        <div>
+          <motion.h1
+            className="text-start text-2xl text-[#CECFCE] md:text-4xl"
+            initial={{ opacity: 0, translateY: -20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            exit={{ opacity: 0, translateY: -20 }}
+            transition={{ duration: 0.2, damping: 30, stiffness: 500, type: "spring" }}
+          >
+            Loading...
+          </motion.h1>
 
-        <motion.h1
-          className="text-2xl text-[#FF694D] md:text-4xl text-start"
-          initial={{ opacity: 0, translateY: -20 }}
-          animate={{ opacity: 1, translateY: 0 }}
-          exit={{ opacity: 0, translateY: -20 }}
-          transition={{ duration: 0.2, damping: 30, stiffness: 500, type: 'spring', delay: 1 }}
-        >
-          Just a sec...
-        </motion.h1>
+          <motion.h1
+            className="text-start text-2xl text-[#FF694D] md:text-4xl"
+            initial={{ opacity: 0, translateY: -20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            exit={{ opacity: 0, translateY: -20 }}
+            transition={{ duration: 0.2, damping: 30, stiffness: 500, type: "spring", delay: 1 }}
+          >
+            Just a sec...
+          </motion.h1>
 
-        <motion.h1
-          className="text-2xl text-[#FDFD60] md:text-4xl text-start"
-          initial={{ opacity: 0, translateY: -20 }}
-          animate={{ opacity: 1, translateY: 0 }}
-          exit={{ opacity: 0, translateY: -20 }}
-          transition={{ duration: 0.2, damping: 30, stiffness: 500, type: 'spring', delay: 2 }}
-        >
-          Almost there...
-        </motion.h1>
+          <motion.h1
+            className="text-start text-2xl text-[#FDFD60] md:text-4xl"
+            initial={{ opacity: 0, translateY: -20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            exit={{ opacity: 0, translateY: -20 }}
+            transition={{ duration: 0.2, damping: 30, stiffness: 500, type: "spring", delay: 2 }}
+          >
+            Almost there...
+          </motion.h1>
 
-        <motion.h1
-          className="text-2xl text-[#28A9FE] md:text-4xl text-start"
-          initial={{ opacity: 0, translateY: -20 }}
-          animate={{ opacity: 1, translateY: 0 }}
-          exit={{ opacity: 0, translateY: -20 }}
-          transition={{ duration: 0.2, damping: 30, stiffness: 500, type: 'spring', delay: 3 }}
-        >
-          One more fetch...
-        </motion.h1>
-      </div>
+          <motion.h1
+            className="text-start text-2xl text-[#28A9FE] md:text-4xl"
+            initial={{ opacity: 0, translateY: -20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            exit={{ opacity: 0, translateY: -20 }}
+            transition={{ duration: 0.2, damping: 30, stiffness: 500, type: "spring", delay: 3 }}
+          >
+            One more fetch...
+          </motion.h1>
+        </div>
       </div>
     );
   return (

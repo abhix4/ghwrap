@@ -1,8 +1,22 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import FloatingCard from "./floating-card";
+import { TextEffect } from "./motion-primitives/text-effect";
 
 export default function CommitsPage({ totalCommits }: { totalCommits: string }) {
+  const fadeUp = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 140,
+        damping: 20,
+        delay: 1.8,
+      },
+    },
+  };
   return (
     <div className="relative min-h-[500px] max-w-[700px] rounded-2xl bg-[#F2F3F2] bg-[url('/commit-union.svg')] bg-contain bg-bottom bg-no-repeat p-6 md:min-h-[650px] md:min-w-[700px] md:p-12">
       {/* <motion.div
@@ -106,21 +120,53 @@ export default function CommitsPage({ totalCommits }: { totalCommits: string }) 
 
       {/* <h1 className="text-7xl text-[#FF694D] font-bold z-10">Total Contributions</h1>
             <h1 className="text-7xl text-[#FF694D] font-bold z-10">500</h1> */}
-      <p className="z-10 text-center text-4xl font-medium tracking-tight text-[#FF694D] md:text-6xl">
-        Some call it grinding. <br />
+
+      <TextEffect
+        per="word"
+        as="h3"
+        preset="slide"
+        className="z-10 text-center text-4xl font-medium tracking-tight text-[#FF694D] md:text-6xl"
+      >
+        Some call it grinding.
+      </TextEffect>
+      <TextEffect
+        per="word"
+        as="h3"
+        preset="slide"
+        className="z-10 text-center text-4xl font-medium tracking-tight text-[#FF694D] md:text-6xl"
+        delay={0.5}
+      >
         You call it fun.
-      </p>
-      <p className="z-10 mt-16 text-center text-3xl font-semibold tracking-tight text-[#FF694D] md:text-4xl">
-        You have Contributed{" "}
-      </p>
-      <p className="z-10 mt-8 text-center text-5xl font-bold tracking-tight text-[#FF694D]">
-        {" "}
+      </TextEffect>
+
+      <TextEffect
+        per="word"
+        as="h3"
+        preset="slide"
+        className="z-10 mt-16 text-center text-3xl font-semibold tracking-tight text-[#FF694D] md:text-4xl"
+        delay={1}
+      >
+        You have Contributed
+      </TextEffect>
+
+      <motion.p
+        className="z-10 mt-8 text-center text-5xl font-bold tracking-tight text-[#FF694D]"
+        variants={fadeUp}
+        initial="hidden"
+        animate="visible"
+      >
         {totalCommits} times
-      </p>
+      </motion.p>
 
-      {/* <Image src="/commit-union.svg" alt="git" width={700} height={150} /> */}
-
-      <p className="z-10 text-center text-3xl tracking-tight text-[#FF694D]"> in 2025</p>
+      <motion.p
+        className="z-10 text-center text-3xl tracking-tight text-[#FF694D]"
+        variants={fadeUp}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 0.2 }}
+      >
+        in 2025
+      </motion.p>
     </div>
   );
 }

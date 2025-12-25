@@ -1,5 +1,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
+import { TextEffect } from "./motion-primitives/text-effect";
+import { TextScramble } from "./motion-primitives/text-scramble";
 
 type IntroPageProp = {
   name: string;
@@ -16,13 +18,18 @@ export default function IntroPage({ name, image, avgCommits }: IntroPageProp) {
         </h1>
         <h1 className="z-20 mt-1 text-5xl font-medium text-[#FF694D]">{name}</h1>
 
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full mt-3 md:mt-0">
+        <div className="absolute top-1/2 left-1/2 mt-3 -translate-x-1/2 -translate-y-1/2 rounded-full md:mt-0">
           <div className="relative h-[140px] w-[140px] md:h-[208px] md:w-[208px]">
             {/* Shadow circle */}
             <div className="absolute -right-1 -bottom-1 z-10 h-[140px] w-[140px] rounded-full border border-[#1A1A1A] bg-[#FF694D] md:h-[208px] md:w-[208px]"></div>
 
             {/* Image wrapper */}
-            <div className="relative z-30 h-[140px] w-[140px] overflow-hidden rounded-full border border-[#1A1A1A] md:h-[208px] md:w-[208px]">
+            <motion.div
+              className="relative z-30 h-[140px] w-[140px] overflow-hidden rounded-full border border-[#1A1A1A] md:h-[208px] md:w-[208px]"
+              initial={{ scale: 0.95, opacity: 1 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 800, damping: 30, duration: 0.1 }}
+            >
               <Image
                 src={image}
                 alt="git"
@@ -31,16 +38,34 @@ export default function IntroPage({ name, image, avgCommits }: IntroPageProp) {
                 className="h-full w-full object-cover"
                 draggable={false}
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
-      <p className="z-10 text-5xl font-medium text-[#FF694D] md:text-7xl">
-        Let's <br /> unwrap your year.
-      </p>
+
+      <div>
+        <TextEffect
+          per="char"
+          as="p"
+          preset="slide"
+          className="z-10 text-5xl font-medium text-[#FF694D] md:text-7xl"
+        >
+          Let's
+        </TextEffect>
+        <TextEffect
+          per="word"
+          as="p"
+          preset="slide"
+          className="z-10 text-5xl font-medium text-[#FF694D] md:text-7xl"
+          delay={0.2}
+        >
+          unwrap your year.
+        </TextEffect>
+      </div>
       <p className="absolute top-6 right-6 z-10 text-right text-lg leading-6 text-[#FF694D] md:top-12 md:right-12">
         {" "}
-        Average commits per day <br /> {avgCommits}
+        <TextScramble className="">Average commits per day</TextScramble>
+        {avgCommits}
       </p>
     </div>
   );

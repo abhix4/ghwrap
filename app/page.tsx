@@ -4,6 +4,9 @@ import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { TextRoll } from "@/components/motion-primitives/text-roll";
+import { motion } from "motion/react";
+import { TextEffect } from "@/components/motion-primitives/text-effect";
 
 export default function Home() {
   const router = useRouter();
@@ -24,23 +27,63 @@ export default function Home() {
         <h1 className="z-10 mt-8 text-xl text-[#FF694D] md:text-2xl">
           <span className="text-lg md:text-xl">In, </span>2025
         </h1>
-        <h1 className="z-10 text-3xl font-bold text-[#FF694D] md:text-7xl">You committed. A lot</h1>
 
-        <h2 className="z-10 mt-6 text-center text-xl text-[#FF694D] md:mt-12 md:text-3xl">
-          Your development journey,<br></br>deserves recognition.
-        </h2>
+        <TextRoll
+          className="z-10 overflow-clip text-3xl font-bold tracking-tight text-[#FF694D] md:text-7xl"
+          variants={{
+            enter: {
+              initial: { y: 0 },
+              animate: { y: 100 },
+            },
+            exit: {
+              initial: { y: -100 },
+              animate: { y: 0 },
+            },
+          }}
+          duration={0.3}
+          getEnterDelay={(i) => i * 0.05}
+          getExitDelay={(i) => i * 0.05 + 0.05}
+          transition={{
+            ease: [0.175, 0.885, 0.32, 1.1],
+          }}
+        >
+          You committed. A lot
+        </TextRoll>
 
-        <div className="z-10 flex flex-col items-center gap-2 md:flex-row md:items-end">
+        <motion.h2
+          className="z-10 mt-6 text-center text-xl text-[#FF694D] md:mt-12 md:text-3xl"
+          initial={{ translateY: 50, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 120, damping: 18, delay: 0.1 }}
+        >
+          Your development journey,
+        </motion.h2>
+
+        <motion.h2
+          className="z-10 text-center text-xl text-[#FF694D] md:text-3xl"
+          initial={{ translateY: 60, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 120, damping: 18, delay: 0.2 }}
+        >
+          deserves recognition.
+        </motion.h2>
+
+        <motion.div
+          className="z-10 flex flex-col items-center gap-2 md:flex-row md:items-end"
+          initial={{ translateY: 80, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 120, damping: 18, delay: 0.4 }}
+        >
           <input
             type="text"
             placeholder="Username"
-            className="text-md mt-18 rounded-md border border-[#2222224b] bg-[#FEFEFF] p-[9px] underline-offset-4 placeholder-[#D9D9D9] shadow-sm outline-none focus:border-b-2 md:w-42 md:text-xl"
+            className="text-md mt-18 rounded-md border border-[#2222224b] bg-[#FEFEFF] p-[9px] underline-offset-4 placeholder-[#D9D9D9] shadow-sm outline-none md:w-42 md:text-xl"
             onChange={(e) => setUserName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && router.push(`/${userName}`)}
           />
 
           <Button variant="right" handleClick={() => router.push(`/${userName}`)} />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

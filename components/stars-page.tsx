@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { motion } from "motion/react";
+import { TextEffect } from "./motion-primitives/text-effect";
 
 export default function StarsRecieved({ stars }: { stars: string }) {
   return (
@@ -143,19 +144,43 @@ export default function StarsRecieved({ stars }: { stars: string }) {
                              </motion.div>min-h-[500px] md:
                    */}
 
-      <h1 className="z-10 mt-22 text-center text-5xl tracking-tight text-[#F4F5C8] md:text-7xl">
+      <TextEffect
+        per="word"
+        as="p"
+        preset="slide"
+        className="z-10 mt-22 text-center text-5xl tracking-tight text-[#F4F5C8] md:text-7xl"
+      >
         Stars Recieved
-      </h1>
-      <h1 className="z-10 mt-12 text-center text-5xl leading-8 font-medium tracking-tight text-[#F4F5C8] md:text-8xl">
+      </TextEffect>
+      <motion.h1
+        className="z-10 mt-12 text-center text-5xl leading-8 font-medium tracking-tight text-[#F4F5C8] md:text-8xl"
+        initial={{ translateY: 40, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.2 }}
+      >
         {stars}
-      </h1>
+      </motion.h1>
 
-      <p className="z-10 mt-8 text-center text-2xl tracking-tight text-[#F4F5C8] md:mt-16 md:text-4xl">
-        That’s {stars} developers saying:
-      </p>
-      <p className="z-10 text-center text-2xl tracking-tight text-[#F4F5C8] md:text-4xl">
+      <p></p>
+      <TextEffect
+        per="word"
+        as="p"
+        preset="slide"
+        className="z-10 mt-8 text-center text-2xl tracking-tight text-[#F4F5C8] md:mt-16 md:text-4xl"
+        delay={0.4}
+      >
+        {`That’s ${stars} developers saying:`}
+      </TextEffect>
+      <p></p>
+      <TextEffect
+        per="word"
+        as="p"
+        preset="slide"
+        className="z-10 text-center text-2xl tracking-tight text-[#F4F5C8] md:text-4xl"
+        delay={0.8}
+      >
         “This helped me build.”
-      </p>
+      </TextEffect>
     </div>
   );
 }
